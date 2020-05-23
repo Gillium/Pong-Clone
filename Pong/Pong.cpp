@@ -101,6 +101,48 @@ int main()
 		ss << "Score:" << score << " Lives:" << lives;
 		hud.setString(ss.str());
 
+		// Handle ball hitting the bottom
+		if (ball.getPosition().top > window.getSize().y)
+		{
+			// reverse the ball direction
+			ball.reboundBottom();
+
+			// remove a life
+			lives--;
+
+			// Check for zero lives
+			if (lives < 1)
+			{
+				// reset the score
+				score = 0;
+				// reset the lives
+				lives = 3;
+			}
+		}
+
+		// Handle ball hitting top
+		if (ball.getPosition().top < 0)
+		{
+			ball.reboundBatOrTop();
+
+			// Add a point to the players score
+			score++;
+		}
+
+		// Handle ball hitting sides
+		if (ball.getPosition().left < 0 ||
+			ball.getPosition().left + ball.getPosition().width > window.getSize().x)
+		{
+			ball.reboundSides();
+		}
+
+		// Has the ball hit the bat?
+		if (ball.getPosition().intersects(bat.getPosition()))
+		{
+			// Hit detected so reverse the ball and score a point
+			ball.reboundBatOrTop();
+		}
+
 		/*
 		Draw the bat, the ball and the HUD
 		******************
