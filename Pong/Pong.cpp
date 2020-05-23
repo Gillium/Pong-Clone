@@ -126,7 +126,7 @@ int main()
 			ball.reboundBatOrTop();
 
 			// Add a point to the players score
-			score++;
+			//score++; MOVED SO PLAYER GETS POINT FOR BAT COLLISION INSTEAD, TUTORIAL EXAMPLE WAS GLITCHED TO GAIN POINT EVEN WHEN BALL COLLIDED WITH BOTTOM OF SCREEN
 		}
 
 		// Handle ball hitting sides
@@ -141,6 +141,9 @@ int main()
 		{
 			// Hit detected so reverse the ball and score a point
 			ball.reboundBatOrTop();
+
+			// Add a point to the players score
+			score++; // ADDED SCORING HERE INSTEAD TO BE MORE ACCURATE
 		}
 
 		/*
